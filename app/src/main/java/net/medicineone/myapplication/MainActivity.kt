@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         buttonStartActivityForResult.setOnClickListener {
             val intent = Intent(this, ChildActivity::class.java)
             startActivityForResult(intent, CHILD_ACTIVITY_REQUEST_CODE)
+            // Finish the child activity after 5 seconds
             Handler(Looper.getMainLooper()).postDelayed({
                 finishActivity(CHILD_ACTIVITY_REQUEST_CODE)
             }, 5000)
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ChildActivity::class.java)
             activityResultLauncher.launch(intent)
             Handler(Looper.getMainLooper()).postDelayed({
+                // Since I don't have a request code, this doesn't work!
                 finishActivity(CHILD_ACTIVITY_REQUEST_CODE)
             }, 5000)
         }
